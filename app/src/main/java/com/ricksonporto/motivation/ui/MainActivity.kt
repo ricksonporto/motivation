@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.ricksonporto.motivation.R
+import com.ricksonporto.motivation.data.Mock
 import com.ricksonporto.motivation.infra.MotivationConstants
 import com.ricksonporto.motivation.infra.SecurityPreferences
 import com.ricksonporto.motivation.databinding.ActivityMainBinding
@@ -11,24 +12,33 @@ import com.ricksonporto.motivation.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private var binding: ActivityMainBinding? = null
+    private var categoryId = MotivationConstants.PHRASEFILTER.ALL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).apply { setContentView(root) }
 
-        onClick()
         //Esconder barra
         supportActionBar?.hide()
+        onClick()
         handleUserName()
         handleFilter(R.id.image_all)
+        handleNextPhrase()
     }
 
-    //Eventos
     private fun onClick() {
-        binding?.buttonNewPhrase?.setOnClickListener {}
-        binding?.imageAll?.setOnClickListener {}
-        binding?.imageHappy?.setOnClickListener {}
-        binding?.imageSunny?.setOnClickListener {}
+        binding?.buttonNewPhrase?.setOnClickListener { view ->
+            if (view.id == R.id.button_new_phrase) {
+                handleNextPhrase()
+            }
+        }
+        binding?.imageAll?.setOnClickListener { view -> handleFilter(view.id) }
+        binding?.imageHappy?.setOnClickListener { view -> handleFilter(view.id) }
+        binding?.imageSunny?.setOnClickListener { view -> handleFilter(view.id) }
+    }
+
+    private fun handleNextPhrase() {
+        binding?.textPhrase?.text = Mock().getPhrase(categoryId)
     }
 
     private fun handleFilter(id: Int) {
@@ -39,12 +49,15 @@ class MainActivity : AppCompatActivity() {
         when (id) {
             R.id.image_all -> {
                 binding?.imageAll?.setColorFilter(ContextCompat.getColor(this, R.color.white))
+                categoryId = MotivationConstants.PHRASEFILTER.ALL
             }
             R.id.image_happy -> {
                 binding?.imageHappy?.setColorFilter(ContextCompat.getColor(this, R.color.white))
+                categoryId = MotivationConstants.PHRASEFILTER.HAPPY
             }
-            R.id.image_Sunny -> {
+            R.id.image_sunny -> {
                 binding?.imageSunny?.setColorFilter(ContextCompat.getColor(this, R.color.white))
+                categoryId = MotivationConstants.PHRASEFILTER.SUNNY
             }
         }
     }
