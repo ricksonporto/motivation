@@ -21,9 +21,25 @@ class MainActivity : AppCompatActivity() {
         //Esconder barra
         supportActionBar?.hide()
         onClick()
-        handleUserName()
         handleFilter(R.id.image_all)
         handleNextPhrase()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        handleUserName()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onStop() {
+        super.onStop()
     }
 
     private fun onClick() {
