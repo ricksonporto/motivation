@@ -8,6 +8,7 @@ import com.ricksonporto.motivation.data.Mock
 import com.ricksonporto.motivation.infra.MotivationConstants
 import com.ricksonporto.motivation.infra.SecurityPreferences
 import com.ricksonporto.motivation.databinding.ActivityMainBinding
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleNextPhrase() {
-        binding?.textPhrase?.text = Mock().getPhrase(categoryId)
+        binding?.textPhrase?.text = Mock().getPhrase(categoryId, Locale.getDefault().language)
     }
 
     private fun handleFilter(id: Int) {
