@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Motivation</string>
+    <string name="new_phrase">Nouvelle phrase</string>
+    <string name="your_name">Quel est votre nom?</string>
+    <string name="user">Utilisateur</string>
+    <string name="phrase">Phrase</string>
+    <string name="save">Enregistrer</string>
+    <string name="lets_begin">Commençons ?</string>
+    <string name="phrases_all">Toutes les phrases</string>
+    <string name="phrases_motivation">Phrases de motivation</string>
+    <string name="phrases_morning">Phrases du matin</string>
+    <string name="validation_mandatory_name">Veuillez indiquer votre nom.</string>
+</resources>
